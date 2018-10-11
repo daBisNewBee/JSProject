@@ -1,0 +1,131 @@
+<!--
+    W3School
+    http://www.w3school.com.cn/js/js_htmldom_html.asp
+-->
+
+<html>
+
+<head>
+    --------------------- 这里是head ---------------------
+    <script>
+        function funHead() {
+            /*
+            *   操作 HTML 元素
+                如需从 JavaScript 访问某个 HTML 元素，您可以使用 document.getElementById(id) 方法。
+                请使用 "id" 属性来标识 HTML 元素：
+            * */
+            document.getElementById("demo").innerHTML = "位于head中的js修改的值！";
+        }
+    </script>
+
+</head>
+
+<!--
+onload 和 onunload 事件会在用户进入或离开页面时被触发。
+onload 事件可用于检测访问者的浏览器类型和浏览器版本，并基于这些信息来加载网页的正确版本。
+onload 和 onunload 事件可用于处理 cookie。
+-->
+<body onload="checkCookies()" onunload = alert("正在执行onunload")>
+--------------------- 这里是body ---------------------
+
+<div id = "myDiv">
+    <p id = "p1">这是位于div块中的第一个段落</p>
+    <p id = "p2">这是位于div块中的第二个段落</p>
+    <p id = "p3"><b>这是位于div块中的第三个段落</b></p>
+</div>
+
+<p id = "p4">
+    JavaScript 能够直接写入 HTML 输出流中：
+</p>
+<div onmouseover="this.innerHTML='谢谢'" onmouseout="this.innerHTML='把鼠标移到上面'"
+     onmousedown="this.style.backgroundColor = 'blue'"
+     onmouseup="this.style.backgroundColor = 'red'"
+     style="background-color:green;width:120px;height:20px;padding:40px;color:#ffffff;">把鼠标移到上面</div>
+<!--
+onchange 事件常结合对输入字段的验证来使用。
+下面是一个如何使用 onchange 的例子。当用户改变输入字段的内容时，会调用 upperCase() 函数。
+-->
+请输入英文字符: <input type="text" id = "fname" onchange="onChgFunc()">
+
+<!--<body> 中的 JavaScript-->
+<script>
+    // JavaScript：写入 HTML 输出
+    document.write("<h1>This is a heading</h1>");
+    document.write("<p>This is a paragraph.</p>");
+</script>
+
+
+<!--JavaScript：对事件作出反应 >
+<!alert() 函数在 JavaScript 中并不常用，但它对于代码测试非常方便。 -->
+<button type="button" onclick="alert('Welcome!')">点击这里</button>
+<button type="button" onclick="dom()">点击这里触发head中的js</button>
+<!--<button type="button" onclick="funHead()">点击这里触发head中的js</button>-->
+
+<p id="demo">
+    JavaScript 能改变 HTML 元素的内容。
+</p>
+
+<button type="button" onclick="myFunc()">修改元素內容</button>
+
+<img id="myImage" src="1.png" onclick="changeImage()">
+
+<p>
+    您只能在 HTML 输出流中使用 <strong>document.write</strong>。
+    如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
+</p>
+
+<button type="button" onclick="funcObject()">调用外部js的方法</button>
+<!--<button type="button" onclick="funcOuter()">调用外部js的方法</button>-->
+
+<!--JavaScript：改变 HTML 内容-->
+<!--我们把 JavaScript 放到了页面代码的底部，这样就可以确保在 <p> 元素创建之后再执行脚本。-->
+<script>
+
+    console.log("这里默认执行..........")
+    varGlobalAuto = "这个变量会自动作为全局变量";
+
+    function onChgFunc() {
+        var x = document.getElementById("fname");
+        x.value = x.value.toUpperCase();
+    }
+
+    function checkCookies() {
+        if (navigator.cookieEnabled == true){
+            alert("已启用Cookie")
+        }else {
+            alert("未启用Cookie")
+        }
+    }
+
+    function myFunc() {
+        var a = 1;
+        var b = a + 10;
+
+        x = document.getElementById("demo");      //查找元素
+        x.innerHTML = Date() + "Hello \
+            JavaScript! " + b;      //改变内容
+        // 改变样式
+        x.style.color = "#ff0000";
+
+        // 向 button 元素分配 onclick 事件：
+        document.getElementById("myImage").onclick = function () {funcObject()};
+    }
+
+    function changeImage() {
+        element = document.getElementById("myImage");
+        if (element.src.match("1")) {
+            element.src = "2.png";
+        } else {
+            element.src = "1.png";
+        }
+    }
+
+</script>
+
+<!-- 一样：<script type="text/javascript" src="func.js"></script>-->
+<script src="object.js"></script>
+<script src="func.js"></script>
+<script src="dom.js"></script>
+
+</body>
+</html>
