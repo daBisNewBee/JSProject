@@ -8,8 +8,8 @@ function dom() {
     // 2. 通过标签名查找 HTML 元素。
     // TODO:无法获取div块，在main.html中可以
     elems = y.getElementsByTagName("p");
-    for (one in elems){
-        document.write("<br>one:"+one.innerHTML);
+    for(i = 0; i< elems.length; i++){
+        document.write("<br>one:"+elems[i].innerHTML);
     }
 
     // 3. 通过类名找到 HTML 元素

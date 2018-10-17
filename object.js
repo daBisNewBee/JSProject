@@ -1,14 +1,44 @@
 // 全局 JavaScript 变量, 被include的html文件也能调用
 var globalVar = "this is global var.";
 
+function personCons(firName, lastName, age, eyecolor) {
+    this.firName = firName;
+    this.lastName = lastName;
+    this.age = age;
+    this.eyecolor = eyecolor;
+    this.changeName = changeName;
+    function changeName(name) {
+        this.lastName = name
+    }
+}
+
 function funcObject() {
-    // 创建 JavaScript 对象
+    // 创建 JavaScript 对象的两种方法
     objectPer = new Object();
     objectPer.firName = "liu";
     objectPer.lastName = "wenbin";
     objectPer.age = 56;
     objectPer.eyecolor = "blue";
     document.write(objectPer.firName + " " + objectPer.lastName + " is " + objectPer.age + " " + objectPer.eyecolor)
+
+    // 创建直接的实例
+    person = {firName:"Bill", lastName:"gates", age:56, eyecolor:"red"};
+    document.write("<br>" + person.firName + " " + person.lastName + " is " + person.age + " " + person.eyecolor)
+
+    // for...in 语句循环遍历对象的属性
+    var txt = "";
+    for(x in person){
+        txt += person[x];
+    }
+    document.write("<br>遍历对象person的属性：" + txt);
+
+    // 使用对象构造器
+    var mother = new personCons("Steve","Jobs", 48, "green");
+    document.write("<br>" + mother.firName + " " + mother.lastName + " is " + mother.age + " " + mother.eyecolor)
+
+    // 调用对象方法
+    mother.changeName("newLastName")
+    document.write("<br>调用对象方法changeName后：" + mother.firName + " " + mother.lastName + " is " + mother.age + " " + mother.eyecolor)
 
     // 访问对象的属性
     var message = "hello dashuaige.";

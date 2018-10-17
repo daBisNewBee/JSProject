@@ -52,6 +52,7 @@ onchange 事件常结合对输入字段的验证来使用。
     // JavaScript：写入 HTML 输出
     document.write("<h1>This is a heading</h1>");
     document.write("<p>This is a paragraph.</p>");
+
 </script>
 
 
@@ -74,8 +75,11 @@ onchange 事件常结合对输入字段的验证来使用。
     如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
 </p>
 
-<button type="button" onclick="funcObject()">调用外部js的方法</button>
-<!--<button type="button" onclick="funcOuter()">调用外部js的方法</button>-->
+<button type="button" onclick="funcOuter()">调用外部js的方法</button>
+<!--<button type="button" onclick="funcObject()">调用外部js的方法</button>-->
+<button type="button" onclick="addNode()">新增dom节点</button>
+<button type="button" onclick="delNode()">删除dom节点</button>
+<button type="button" onclick="RegExpFunc()">正则表达式</button>
 
 <!--JavaScript：改变 HTML 内容-->
 <!--我们把 JavaScript 放到了页面代码的底部，这样就可以确保在 <p> 元素创建之后再执行脚本。-->
@@ -84,12 +88,33 @@ onchange 事件常结合对输入字段的验证来使用。
     console.log("这里默认执行..........")
     varGlobalAuto = "这个变量会自动作为全局变量";
 
+    //  删除节点的两种方式。但相同点：必须通过父节点删除子节点
+    function delNode() {
+        var parent = document.getElementById("myDiv");
+        var child = document.getElementById("p2");
+        parent.removeChild(child);
+
+        var child = document.getElementById("p1");
+        child.parentNode.removeChild(child);
+    }
+    
+    function addNode() {
+        var para = document.createElement("p");
+        var node = document.createTextNode("这是新段落");
+        para.appendChild(node);
+
+        var  element = document.getElementById("myDiv");
+        element.appendChild(para);
+    }
+
     function onChgFunc() {
         var x = document.getElementById("fname");
         x.value = x.value.toUpperCase();
     }
 
     function checkCookies() {
+        return;
+
         if (navigator.cookieEnabled == true){
             alert("已启用Cookie")
         }else {
